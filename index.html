@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mellow Minds LLC - Technology Consulting</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #333; line-height: 1.7; }
+        
+        /* Nav */
+        nav { position: fixed; width: 100%; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); box-shadow: 0 1px 3px rgba(0,0,0,0.08); z-index: 100; padding: 1rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+        nav a { text-decoration: none; color: #444; margin-left: 2rem; font-weight: 500; transition: color 0.2s; }
+        nav a:hover { color: #2563eb; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #1e3a5f; }
+        .logo span { color: #2563eb; }
+
+        /* Hero */
+        .hero { padding: 10rem 2rem 6rem; text-align: center; background: linear-gradient(160deg, #0f2027, #1e3a5f, #2563eb); color: #fff; position: relative; overflow: hidden; }
+        .hero::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 30% 50%, rgba(37,99,235,0.2), transparent 70%); }
+        .hero-content { position: relative; z-index: 1; }
+        .hero h1 { font-size: 3.2rem; margin-bottom: 1.2rem; font-weight: 800; letter-spacing: -0.5px; }
+        .hero p { font-size: 1.25rem; max-width: 650px; margin: 0 auto 2.5rem; opacity: 0.9; }
+        .btn { display: inline-block; padding: 0.9rem 2.2rem; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.2s; }
+        .btn-primary { background: #fff; color: #2563eb; }
+        .btn-primary:hover { background: #f0f4ff; transform: translateY(-1px); }
+        .btn-outline { border: 2px solid #fff; color: #fff; margin-left: 1rem; }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+        /* Sections */
+        section { padding: 5rem 2rem; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        h2 { font-size: 2.2rem; margin-bottom: 0.5rem; color: #1e3a5f; font-weight: 700; }
+        .section-subtitle { color: #666; font-size: 1.1rem; margin-bottom: 2.5rem; }
+        .alt-bg { background: #f8fafc; }
+
+        /* Services */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card { padding: 2.2rem; border-radius: 10px; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #e8ecf0; transition: transform 0.2s, box-shadow 0.2s; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .card h3 { color: #2563eb; margin-bottom: 0.6rem; font-size: 1.2rem; }
+        .card p { color: #555; }
+
+        /* Industries */
+        .industries-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.5rem; }
+        .industry-item { text-align: center; padding: 2rem 1rem; border-radius: 10px; background: #fff; border: 1px solid #e8ecf0; transition: all 0.2s; }
+        .industry-item:hover { border-color: #2563eb; box-shadow: 0 4px 12px rgba(37,99,235,0.1); }
+        .industry-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .industry-item span { font-weight: 600; color: #1e3a5f; font-size: 0.95rem; }
+
+        /* Why Us */
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
+        .why-item { display: flex; gap: 1rem; align-items: flex-start; }
+        .why-icon { width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, #2563eb, #1e3a5f); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; flex-shrink: 0; }
+        .why-item h4 { color: #1e3a5f; margin-bottom: 0.3rem; }
+        .why-item p { color: #555; font-size: 0.95rem; }
+
+        /* Engagement */
+        .engagement-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .engagement-card { padding: 2.5rem 2rem; border-radius: 10px; background: #fff; border: 2px solid #e8ecf0; text-align: center; transition: all 0.2s; }
+        .engagement-card:hover { border-color: #2563eb; }
+        .engagement-card h3 { color: #1e3a5f; margin-bottom: 0.8rem; font-size: 1.3rem; }
+        .engagement-card ul { text-align: left; list-style: none; padding: 0; }
+        .engagement-card li { padding: 0.4rem 0; color: #555; }
+        .engagement-card li::before { content: '✓'; color: #2563eb; font-weight: 700; margin-right: 0.5rem; }
+
+        /* CTA */
+        .cta { background: linear-gradient(135deg, #1e3a5f, #2563eb); padding: 4rem 2rem; text-align: center; color: #fff; }
+        .cta h2 { color: #fff; font-size: 2rem; margin-bottom: 1rem; }
+        .cta p { opacity: 0.9; margin-bottom: 2rem; font-size: 1.1rem; }
+        .cta .btn-primary { background: #fff; color: #2563eb; }
+
+        /* Contact */
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+        .contact-info h3 { color: #1e3a5f; margin-bottom: 1rem; font-size: 1.3rem; }
+        .contact-info p { color: #555; margin-bottom: 1.5rem; }
+        .contact-info a { color: #2563eb; text-decoration: none; }
+        form { display: flex; flex-direction: column; gap: 1rem; }
+        input, textarea, select { padding: 0.85rem 1rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; font-family: inherit; transition: border-color 0.2s; }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: #2563eb; }
+        textarea { resize: vertical; min-height: 120px; }
+        .btn-submit { padding: 0.9rem 2rem; background: #2563eb; color: #fff; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .btn-submit:hover { background: #1d4ed8; }
+
+        /* Footer */
+        footer { text-align: center; padding: 2.5rem; background: #0f2027; color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            nav a { margin-left: 1rem; font-size: 0.9rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .btn-outline { margin-left: 0; margin-top: 1rem; display: inline-block; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <span class="logo">Mellow<span>Minds</span></span>
+        <div>
+            <a href="#services">Services</a>
+            <a href="#industries">Industries</a>
+            <a href="#engagement">Engagement</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Empowering Businesses Through<br>Intelligent Technology</h1>
+            <p>Expert consulting staff, end-to-end project delivery, and AI-driven solutions that transform how you operate and compete.</p>
+            <a href="#contact" class="btn btn-primary">Start a Conversation</a>
+            <a href="#services" class="btn btn-outline">Explore Services</a>
+        </div>
+    </div>
+
+    <section id="services" class="alt-bg">
+        <div class="container fade-in">
+            <h2>What We Do</h2>
+            <p class="section-subtitle">Comprehensive technology services tailored to your business needs</p>
+            <div class="services-grid">
+                <div class="card">
+                    <h3>Staff Augmentation</h3>
+                    <p>Skilled consultants embedded in your teams — developers, architects, data engineers, and AI specialists ready to deliver from day one.</p>
+                </div>
+                <div class="card">
+                    <h3>End-to-End Project Delivery</h3>
+                    <p>From discovery and design through development, testing, deployment, and ongoing support. We own the outcome.</p>
+                </div>
+                <div class="card">
+                    <h3>AI & Generative AI Solutions</h3>
+                    <p>AI strategy, LLM integration, intelligent automation, and custom model development to modernize your products and workflows.</p>
+                </div>
+                <div class="card">
+                    <h3>Cloud & Data Engineering</h3>
+                    <p>Cloud migration, infrastructure modernization, data pipelines, and analytics platforms on AWS, Azure, and GCP.</p>
+                </div>
+                <div class="card">
+                    <h3>Application Development</h3>
+                    <p>Full-stack web and mobile applications built with modern frameworks, scalable architectures, and best practices.</p>
+                </div>
+                <div class="card">
+                    <h3>Digital Transformation</h3>
+                    <p>Legacy modernization, process automation, and technology roadmaps that align IT with business strategy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="industries">
+        <div class="container fade-in">
+            <h2>Industries We Serve</h2>
+            <p class="section-subtitle">Deep domain expertise across high-impact verticals</p>
+            <div class="industries-grid">
+                <div class="industry-item">
+                    <div class="industry-icon">🏥</div>
+                    <span>Healthcare</span>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">🏦</div>
+                    <span>Financial Services</span>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">🛒</div>
+                    <span>Retail & E-Commerce</span>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">🏭</div>
+                    <span>Manufacturing</span>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">💻</div>
+                    <span>Technology</span>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">⚡</div>
+                    <span>Energy & Utilities</span>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">🚚</div>
+                    <span>Logistics</span>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">🎓</div>
+                    <span>Education</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt-bg">
+        <div class="container fade-in">
+            <h2>Why Mellow Minds</h2>
+            <div class="why-grid">
+                <div class="why-item">
+                    <div class="why-icon">⚡</div>
+                    <div>
+                        <h4>Flexible Engagement Models</h4>
+                        <p>Scale up or down as your needs evolve. No rigid contracts — just results.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🎯</div>
+                    <div>
+                        <h4>Proven Delivery Track Record</h4>
+                        <p>Consistent on-time, on-budget delivery across complex enterprise projects.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🤖</div>
+                    <div>
+                        <h4>AI-First Mindset</h4>
+                        <p>We integrate AI where it creates real value — not just buzzwords.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🤝</div>
+                    <div>
+                        <h4>Partnership Approach</h4>
+                        <p>We invest in understanding your business, not just your tickets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="engagement">
+        <div class="container fade-in">
+            <h2>Engagement Models</h2>
+            <p class="section-subtitle">Choose the model that fits your needs</p>
+            <div class="engagement-grid">
+                <div class="engagement-card">
+                    <h3>Staff Augmentation</h3>
+                    <ul>
+                        <li>Dedicated consultants on your team</li>
+                        <li>You manage, we deliver</li>
+                        <li>Flexible duration & scale</li>
+                        <li>Seamless integration</li>
+                    </ul>
+                </div>
+                <div class="engagement-card">
+                    <h3>Managed Projects</h3>
+                    <ul>
+                        <li>Fixed scope & timeline</li>
+                        <li>We own delivery end-to-end</li>
+                        <li>Regular milestones & demos</li>
+                        <li>Predictable budgeting</li>
+                    </ul>
+                </div>
+                <div class="engagement-card">
+                    <h3>Build-Operate-Transfer</h3>
+                    <ul>
+                        <li>We build your team & processes</li>
+                        <li>Operate until you're ready</li>
+                        <li>Full knowledge transfer</li>
+                        <li>Zero disruption handoff</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Let's discuss how Mellow Minds can accelerate your next initiative.</p>
+        <a href="#contact" class="btn btn-primary">Let's Talk</a>
+    </div>
+
+    <section id="about">
+        <div class="container fade-in">
+            <h2>About Mellow Minds</h2>
+            <p style="max-width:700px; font-size:1.05rem; color:#555;">Mellow Minds LLC is a technology consulting firm that partners with organizations to solve complex challenges. We bring together seasoned professionals across traditional software engineering and cutting-edge AI to deliver measurable outcomes — whether you need dedicated talent, a fully managed project, or a strategic technology partner for the long term.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="alt-bg">
+        <div class="container fade-in">
+            <h2>Get in Touch</h2>
+            <p class="section-subtitle">Tell us about your project and we'll get back to you within 24 hours</p>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Let's Start a Conversation</h3>
+                    <p>Whether you have a specific project in mind or want to explore how we can help, we'd love to hear from you.</p>
+                    <p><strong>Email:</strong> <a href="mailto:info@mellowmindsllc.com">info@mellowmindsllc.com</a></p>
+                    <p style="margin-top:1.5rem;"><strong>Locations:</strong></p>
+                    <p>1725 Gilded Crest Dr, Leander, TX 78641</p>
+                    <p>2018 156th NE Suite# 249, Bellevue, WA 98007</p>
+                </div>
+                <form action="https://formspree.io/f/mbdbzprd" method="POST">
+                    <input type="text" name="name" placeholder="Your Name *" required>
+                    <input type="email" name="email" placeholder="Email Address *" required>
+                    <input type="text" name="company" placeholder="Company (optional)">
+                    <select name="interest" required>
+                        <option value="" disabled selected>What are you interested in?</option>
+                        <option value="staff-augmentation">Staff Augmentation</option>
+                        <option value="managed-project">Managed Project</option>
+                        <option value="ai-solutions">AI & Generative AI Solutions</option>
+                        <option value="cloud-data">Cloud & Data Engineering</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <textarea name="message" placeholder="Tell us about your project *" required></textarea>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 Mellow Minds LLC. All rights reserved.
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
